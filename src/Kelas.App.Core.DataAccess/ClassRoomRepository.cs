@@ -1,5 +1,5 @@
 ﻿using Kelas.App.Core.ClassRoom;
-using Microsoft.EntityFrameworkCore.Query;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,42 +16,72 @@ namespace Kelas.App.Core.DataAccess
             _db = db;
         }
 
-        public int Delete(Guid id)
+        public async Task<int> Delete(Guid id)
         {
             int count = 0;
 
-            var item = _db.ClassRooms.FirstOrDefault(c => c.Id == id);
+            var item = await _db.ClassRooms.FirstOrDefaultAsync(c => c.Id == id);
             if (item != null)
             {
                 _db.ClassRooms.Remove(item);
-                count = _db.SaveChanges();
+                count = await _db.SaveChangesAsync();
             }
 
             return count;
         }
 
-        public IEnumerable<ClassRoom.ClassRoom> Get(List<SearchCriteria> criteria)
+        public async Task<IEnumerable<ClassRoom.ClassRoom>> Get(List<SearchCriteria> searchCriteria)
         {
-            throw new NotImplementedException();
+            var query = _db.ClassRooms.AsQueryable();
+
+            if(searchCriteria != null)
+            {
+                var cr = new ClassRoom.ClassRoom();
+                foreach (SearchCriteria criteria in searchCriteria)
+                {
+                    switch (criteria.SearchField)
+                    {
+                        case nameof(cr.Name):
+                            if (criteria.SearchOperator == SearchOperator.Equals)
+                                query = query.Where(c => c.Name == criteria.SearchValue);
+                            else if (criteria.SearchOperator == SearchOperator.StartsWith)
+                                query = query.Where(c => c.Name.StartsWith(criteria.SearchValue));
+                            else if (criteria.SearchOperator == SearchOperator.Contains)
+                                query = query.Where(c => c.Name.Contains(criteria.SearchValue));
+                            break;
+                    }
+                }
+            }
+
+            return await query.ToListAsync();
         }
 
-        public ClassRoom.ClassRoom GetById(Guid id)
+        public async Task<ClassRoom.ClassRoom> GetById(Guid id)
         {
-            return _db.ClassRooms.FirstOrDefault(c => c.Id == id);
+            return await _db.ClassRooms.FirstOrDefaultAsync(c => c.Id == id);
         }
 
-        public ClassRoom.ClassRoom Insert(NewClassRoom newItem)
+        public async Task<ClassRoom.ClassRoom> Insert(NewClassRoom newItem)
         {
             var item = new ClassRoom.ClassRoom() { Name = newItem.Name };
             _db.ClassRooms.Add(item);
-            _db.SaveChanges();
+            await _db.SaveChangesAsync();
 
             return item;
         }
 
-        public ClassRoom.ClassRoom Update(Guid id, EditClassRoom editItem)
+        public async Task<ClassRoom.ClassRoom> Update(Guid id, EditClassRoom editItem)
         {
-            throw new NotImplementedException();
+            var item = await _db.ClassRooms.FirstOrDefaultAsync(c => c.Id == id);
+            if(item != null)
+            {
+                item.Name = editItem.Name;
+
+                _db.ClassRooms.Update(item);
+                await _db.SaveChangesAsync();
+            }
+
+            return item;
         }
     }
 }

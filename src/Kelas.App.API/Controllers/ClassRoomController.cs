@@ -21,18 +21,18 @@ namespace Kelas.App.API.Controllers
 
         [HttpGet]
         [Route("{id}")]
-        public IActionResult Get(Guid id)
+        public async Task<IActionResult> Get(Guid id)
         {
-            return Ok(_classRoomSvc.GetClassRoom(id));
+            return Ok(await _classRoomSvc.GetClassRoom(id));
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody] NewClassRoom item)
+        public async Task<IActionResult> Post([FromBody] NewClassRoom item)
         {
             if (string.IsNullOrEmpty(item.Name))
                 return BadRequest("Name is required");
 
-            return Created("", _classRoomSvc.CreateClassRoom(item));
+            return Created("", await _classRoomSvc.CreateClassRoom(item));
         }
     }
 }

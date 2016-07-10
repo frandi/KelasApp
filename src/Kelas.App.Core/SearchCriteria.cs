@@ -7,12 +7,13 @@ namespace Kelas.App.Core
 {
     public class SearchCriteria
     {
-        SearchOperator SearchOperator { get; set; }
-        string SearchField { get; set; }
+        public SearchOperator SearchOperator { get; set; }
+        public string SearchField { get; set; }
+        public string SearchValue { get; set; }
     }
 
     public enum SearchOperator
     {
-        Equals, StartsWith, EndsWith, LessThan, GreaterThan
+        Equals, StartsWith, Contains, LessThan, GreaterThan
     }
 }
