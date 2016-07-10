@@ -14,29 +14,29 @@ namespace Kelas.App.Core.ClassRoom
             _classRoomRepo = classRoomRepo;
         }
 
-        public ClassRoom GetClassRoom(Guid classRoomId)
+        public async Task<ClassRoom> GetClassRoom(Guid classRoomId)
         {
-            return _classRoomRepo.GetById(classRoomId);
+            return await _classRoomRepo.GetById(classRoomId);
         }
 
-        public IEnumerable<ClassRoom> GetClassRoom(List<SearchCriteria> criteria)
+        public async Task<IEnumerable<ClassRoom>> GetClassRoom(List<SearchCriteria> criteria)
         {
-            return _classRoomRepo.Get(criteria);
+            return await _classRoomRepo.Get(criteria);
         }
 
-        public ClassRoom CreateClassRoom(NewClassRoom newClassRoom)
+        public async Task<ClassRoom> CreateClassRoom(NewClassRoom newClassRoom)
         {
-            return _classRoomRepo.Insert(newClassRoom);
+            return await _classRoomRepo.Insert(newClassRoom);
         }
 
-        public ClassRoom UpdateClassRoom(Guid classRoomId, EditClassRoom editClassRoom)
+        public async Task<ClassRoom> UpdateClassRoom(Guid classRoomId, EditClassRoom editClassRoom)
         {
-            return _classRoomRepo.Update(classRoomId, editClassRoom);
+            return await _classRoomRepo.Update(classRoomId, editClassRoom);
         }
 
-        public int DeleteClassRoom(Guid classRoomId)
+        public async Task<int> DeleteClassRoom(Guid classRoomId)
         {
-            return _classRoomRepo.Delete(classRoomId);
+            return await _classRoomRepo.Delete(classRoomId);
         }
     }
 }

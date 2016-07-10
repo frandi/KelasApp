@@ -7,10 +7,10 @@ namespace Kelas.App.Core.ClassRoom
 {
     public interface IClassRoomService
     {
-        ClassRoom GetClassRoom(Guid classRoomId);
-        IEnumerable<ClassRoom> GetClassRoom(List<SearchCriteria> criteria);
-        ClassRoom CreateClassRoom(NewClassRoom newClassRoom);
-        ClassRoom UpdateClassRoom(Guid classRoomId, EditClassRoom editClassRoom);
-        int DeleteClassRoom(Guid classRoomId);
+        Task<ClassRoom> GetClassRoom(Guid classRoomId);
+        Task<IEnumerable<ClassRoom>> GetClassRoom(List<SearchCriteria> criteria);
+        Task<ClassRoom> CreateClassRoom(NewClassRoom newClassRoom);
+        Task<ClassRoom> UpdateClassRoom(Guid classRoomId, EditClassRoom editClassRoom);
+        Task<int> DeleteClassRoom(Guid classRoomId);
     }
 }
