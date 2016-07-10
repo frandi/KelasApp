@@ -6,8 +6,8 @@
   </PropertyGroup>
   <Import Project="$(VSToolsPath)\DotNet\Microsoft.DotNet.Props" Condition="'$(VSToolsPath)' != ''" />
   <PropertyGroup Label="Globals">
-    <ProjectGuid>d9f4adbc-3ad7-4bb7-be79-e51ef3862c75</ProjectGuid>
-    <RootNamespace>api</RootNamespace>
+    <ProjectGuid>588b55e6-1080-4255-93ef-186f26e5bd01</ProjectGuid>
+    <RootNamespace>Kelas.App.API</RootNamespace>
     <BaseIntermediateOutputPath Condition="'$(BaseIntermediateOutputPath)'=='' ">.\obj</BaseIntermediateOutputPath>
     <OutputPath Condition="'$(OutputPath)'=='' ">.\bin\</OutputPath>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
