@@ -14,11 +14,19 @@ namespace Kelas.App.Core.ClassRoom
     }
 
     /// <summary>
-    /// A class containing required fields to create new ClassRoom
+    /// A class containing required fields to create new ClassRoom 
     /// </summary>
     public class NewClassRoom
     {
         public string Name { get; set; }
+
+        public ClassRoom ToClassRoom()
+        {
+            return new ClassRoom()
+            {
+                Name = Name
+            };
+        }
     }
 
     /// <summary>
@@ -27,6 +35,11 @@ namespace Kelas.App.Core.ClassRoom
     public class EditClassRoom
     {
         public string Name { get; set; }
+
+        public void UpdateClassRoomFields(ClassRoom originalClassRoom)
+        {
+            originalClassRoom.Name = Name;
+        }
     }
 
     

@@ -1,8 +1,7 @@
-{
+﻿{
   "version": "1.0.0-*",
 
   "dependencies": {
-    "Kelas.App.Common": "1.0.0-*",
     "NETStandard.Library": "1.6.0"
   },
 
