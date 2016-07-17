@@ -63,7 +63,7 @@ namespace Kelas.App.Core.DataAccess
 
         public async Task<ClassRoom.ClassRoom> Insert(NewClassRoom newItem)
         {
-            var item = new ClassRoom.ClassRoom() { Name = newItem.Name };
+            var item = newItem.ToClassRoom();
             _db.ClassRooms.Add(item);
             await _db.SaveChangesAsync();
 
@@ -75,8 +75,8 @@ namespace Kelas.App.Core.DataAccess
             var item = await _db.ClassRooms.FirstOrDefaultAsync(c => c.Id == id);
             if(item != null)
             {
-                item.Name = editItem.Name;
-
+                editItem.UpdateClassRoomFields(item);
+                
                 _db.ClassRooms.Update(item);
                 await _db.SaveChangesAsync();
             }
