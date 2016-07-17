@@ -2,13 +2,17 @@
   "version": "1.0.0-*",
 
   "dependencies": {
-    "Kelas.App.Common": "1.0.0-*",
-    "NETStandard.Library": "1.6.0"
+    "Kelas.App.Common": "1.0.0-*"
   },
 
   "frameworks": {
-    "netstandard1.6": {
-      "imports": "dnxcore50"
+    "netcoreapp1.0": {
+      "dependencies": {
+        "Microsoft.NETCore.App": {
+          "type": "platform",
+          "version": "1.0.0"
+        }
+      }
     }
   }
 }
