@@ -12,6 +12,7 @@ environment:
 init:
   - ps: $Env:LABEL = "CI" + $Env:APPVEYOR_BUILD_NUMBER.PadLeft(5, "0")
 build_script:
+  - dotnet --info
   - appveyor-retry dotnet restore -v Minimal
   - dotnet build "src\Kelas.App.API" -c %CONFIGURATION% --version-suffix %LABEL%
 cache:
