@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -10,6 +11,7 @@ namespace Kelas.App.Core.ClassRoom
     /// </summary>
     public class ClassRoom: BaseModel
     {
+        [Required]
         public string Name { get; set; }
     }
 
@@ -18,6 +20,7 @@ namespace Kelas.App.Core.ClassRoom
     /// </summary>
     public class NewClassRoom
     {
+        [Required]
         public string Name { get; set; }
 
         public ClassRoom ToClassRoom()
@@ -34,6 +37,7 @@ namespace Kelas.App.Core.ClassRoom
     /// </summary>
     public class EditClassRoom
     {
+        [Required]
         public string Name { get; set; }
 
         public void UpdateClassRoomFields(ClassRoom originalClassRoom)
