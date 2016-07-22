@@ -15,5 +15,7 @@ build_script:
   - dotnet --info
   - appveyor-retry dotnet restore -v Information
   - dotnet build "src\Kelas.App.API" -c %CONFIGURATION% --version-suffix %LABEL%
+test_script:
+  - dotnet test "test\Kelas.App.Core.Test"
 cache:
   - '%USERPROFILE%\.nuget\packages'
