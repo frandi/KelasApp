@@ -5,7 +5,10 @@ using System.Threading.Tasks;
 
 namespace Kelas.App.Core
 {
-    public interface IRepository<T, NewT, EditT> where T: BaseModel
+    public interface IRepository<T, NewT, EditT> 
+        where T: BaseModel
+        where NewT: class
+        where EditT: class
     {
         /// <summary>
         /// Get item by id

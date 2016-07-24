@@ -10,7 +10,10 @@ namespace Kelas.App.Core.DataAccess.ModelConfigurations
     {
         public static void ConfigureClassRoom(this ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<ClassRoom.ClassRoom>().Property(e => e.Name).IsRequired();
+            modelBuilder.Entity<ClassRoom.ClassRoom>()
+                .HasOne(c => c.School)
+                .WithMany(s => s.ClassRooms)
+                .HasForeignKey(c => c.SchoolId);
         }
     }
 }

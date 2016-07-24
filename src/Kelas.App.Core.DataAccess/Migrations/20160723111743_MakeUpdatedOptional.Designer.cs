@@ -8,9 +8,10 @@ using Kelas.App.Core.DataAccess;
 namespace Kelas.App.Core.DataAccess.Migrations
 {
     [DbContext(typeof(KelasAppDbContext))]
-    partial class KelasAppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20160723111743_MakeUpdatedOptional")]
+    partial class MakeUpdatedOptional
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.0-rtm-21431")

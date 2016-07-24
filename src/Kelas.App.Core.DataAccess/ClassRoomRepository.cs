@@ -64,6 +64,8 @@ namespace Kelas.App.Core.DataAccess
         public async Task<ClassRoom.ClassRoom> Insert(NewClassRoom newItem)
         {
             var item = newItem.ToClassRoom();
+            item.Created = DateTime.UtcNow;
+
             _db.ClassRooms.Add(item);
             await _db.SaveChangesAsync();
 
@@ -76,6 +78,7 @@ namespace Kelas.App.Core.DataAccess
             if(item != null)
             {
                 editItem.UpdateClassRoomFields(item);
+                item.Updated = DateTime.UtcNow;
                 
                 _db.ClassRooms.Update(item);
                 await _db.SaveChangesAsync();

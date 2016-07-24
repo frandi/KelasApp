@@ -13,6 +13,9 @@ namespace Kelas.App.Core.ClassRoom
     {
         [Required]
         public string Name { get; set; }
+
+        public Guid SchoolId { get; set; }
+        public School.School School { get; set; }
     }
 
     /// <summary>
@@ -22,12 +25,14 @@ namespace Kelas.App.Core.ClassRoom
     {
         [Required]
         public string Name { get; set; }
+        public Guid SchoolId { get; set; }
 
         public ClassRoom ToClassRoom()
         {
             return new ClassRoom()
             {
-                Name = Name
+                Name = Name,
+                SchoolId = SchoolId
             };
         }
     }
@@ -39,10 +44,12 @@ namespace Kelas.App.Core.ClassRoom
     {
         [Required]
         public string Name { get; set; }
+        public Guid SchoolId { get; set; }
 
         public void UpdateClassRoomFields(ClassRoom originalClassRoom)
         {
             originalClassRoom.Name = Name;
+            originalClassRoom.SchoolId = SchoolId;
         }
     }
 

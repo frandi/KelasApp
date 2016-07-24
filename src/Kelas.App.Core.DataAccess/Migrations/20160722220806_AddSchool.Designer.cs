@@ -8,9 +8,10 @@ using Kelas.App.Core.DataAccess;
 namespace Kelas.App.Core.DataAccess.Migrations
 {
     [DbContext(typeof(KelasAppDbContext))]
-    partial class KelasAppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20160722220806_AddSchool")]
+    partial class AddSchool
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.0-rtm-21431")
@@ -28,7 +29,7 @@ namespace Kelas.App.Core.DataAccess.Migrations
 
                     b.Property<Guid>("SchoolId");
 
-                    b.Property<DateTime?>("Updated");
+                    b.Property<DateTime>("Updated");
 
                     b.HasKey("Id");
 
@@ -49,7 +50,7 @@ namespace Kelas.App.Core.DataAccess.Migrations
                     b.Property<string>("Name")
                         .IsRequired();
 
-                    b.Property<DateTime?>("Updated");
+                    b.Property<DateTime>("Updated");
 
                     b.HasKey("Id");
 

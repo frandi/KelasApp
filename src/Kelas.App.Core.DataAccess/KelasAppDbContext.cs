@@ -16,10 +16,12 @@ namespace Kelas.App.Core.DataAccess
         }
 
         public DbSet<ClassRoom.ClassRoom> ClassRooms { get; set; }
+        public DbSet<School.School> Schools { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ConfigureClassRoom();
+            modelBuilder.ConfigureSchool();
         }
     }
 }
